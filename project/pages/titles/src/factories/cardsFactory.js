@@ -7,7 +7,7 @@ const cardListWorker = new Worker("./src/workers/cardListWorker.js", {
 });
 const [rootPath] = window.location.href.split("/pages/");
 const factory = {
-  async initalize() {
+  async initialize() {
     return CardsController.initialize({
       worker: cardListWorker,
       view: new CardsView(),
