@@ -11,12 +11,6 @@ export default class Controller {
     this.#view.configureOnBtnClick(this.onBtnStart.bind(this));
   }
 
-  static async initialize(deps) {
-    const controller = new Controller(deps);
-    controller.log("Not yet detecting eye blink! click in the button to start");
-    return controller.init();
-  }
-
   #configureWorker(worker) {
     let ready = false;
     worker.onmessage = ({ data }) => {
@@ -41,10 +35,6 @@ export default class Controller {
     };
   }
 
-  async init() {
-    console.log("Init!");
-  }
-
   loop() {
     const video = this.#camera.video;
     const img = this.#view.getVideoFrame(video);
@@ -62,5 +52,15 @@ export default class Controller {
     this.log("Initializing detection...");
     this.#blinkCounter = 0;
     this.loop();
+  }
+
+  async init() {
+    console.log("Init!");
+  }
+
+  static async initialize(deps) {
+    const controller = new Controller(deps);
+    controller.log("Not yet detecting eye blink! click in the button to start");
+    return controller.init();
   }
 }
