@@ -13,6 +13,8 @@ import {
   knownGestures,
   gestureStrings,
 } from "../util/util.js";
+
+const styler = new PseudoStyler();
 const camera = await Camera.init();
 
 const [rootPath] = window.location.href.split("/pages/");
@@ -22,6 +24,7 @@ const factory = {
       camera,
       view: new HandGestureView({
         fingerLookupIndexes,
+        styler,
       }),
       service: new HandGestureService({
         knownGestures,
